@@ -1,0 +1,18 @@
+F-TAXI LARAVEL - RENDER DEPLOYMENT
+
+1. Push this folder to a GitHub repository.
+2. Do NOT commit .env. Set APP_KEY and database variables in Render Environment.
+3. Create a Render Web Service from the GitHub repository. Runtime: Docker.
+4. Database: this project currently uses MySQL (DB_CONNECTION=mysql). Render's native database is PostgreSQL, so either use an external MySQL database or migrate the Laravel app/database to PostgreSQL before changing DB_CONNECTION.
+5. For external MySQL, set: DB_CONNECTION=mysql, DB_HOST, DB_PORT=3306, DB_DATABASE, DB_USERNAME, DB_PASSWORD.
+6. Set APP_ENV=production, APP_DEBUG=false, APP_URL=https://YOUR-SERVICE.onrender.com.
+7. Generate an APP_KEY locally with: php artisan key:generate --show, then put the value in Render as APP_KEY.
+8. After the database is configured, run migrations from a Render shell or deploy command: php artisan migrate --force.
+
+Included Docker files:
+- Dockerfile
+- docker/apache-vhost.conf
+- docker/start.sh
+- render.yaml
+
+The uploaded source ZIP contained vendor/, .env, an embedded taxi-accounts.rar, tests, cache files and some malformed zero-byte root entries. Those were intentionally excluded from this deployment ZIP.
